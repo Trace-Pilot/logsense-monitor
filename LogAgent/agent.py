@@ -21,12 +21,12 @@ LOG_DIRECTORY = os.path.join(
 # }
 
 DB_CONFIG = {
-        host=os.getenv("LOGSENSE_DB_HOST", "localhost"),
-        port=int(os.getenv("LOGSENSE_DB_PORT", "5432")),
-        dbname=os.getenv("LOGSENSE_DB_NAME", "postgres"),
-        user=os.getenv("LOGSENSE_DB_USER", "postgres"),
-        password=os.getenv("LOGSENSE_DB_PASSWORD", ""),
-        }
+    "host": os.getenv("LOGSENSE_DB_HOST", "localhost"),
+    "port": int(os.getenv("LOGSENSE_DB_PORT", "5432")),
+    "dbname": os.getenv("LOGSENSE_DB_NAME", "postgres"),
+    "user": os.getenv("LOGSENSE_DB_USER", "postgres"),
+    "password": os.getenv("LOGSENSE_DB_PASSWORD", ""),
+}
 
 # ============================================================
 # MASK SENSITIVE INFORMATION
