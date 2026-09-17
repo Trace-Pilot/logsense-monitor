@@ -1,7 +1,6 @@
 .venv/
 __pycache__/
 *.pyc
-Logs/
 .env
 .streamlit/secrets.toml
 desktop.ini
