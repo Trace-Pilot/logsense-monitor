@@ -440,9 +440,9 @@ def main():
         # Create table if necessary
         # ----------------------------------------------------
 
-        create_logs_table(
-            connection
-        )
+        # create_logs_table(
+        #     connection
+        # )
 
         # ----------------------------------------------------
         # Check log directory
