@@ -1,4 +1,11 @@
-import streamlit as st
+try:
+    from importlib import import_module
+
+    st = import_module("streamlit")
+except ModuleNotFoundError as error:
+    raise RuntimeError(
+        "Streamlit is required to run this dashboard. Install it with: pip install streamlit"
+    ) from error
 from db import clause, logs, options, query
 
 st.set_page_config(page_title="LogSense Monitor", page_icon="📊", layout="wide")

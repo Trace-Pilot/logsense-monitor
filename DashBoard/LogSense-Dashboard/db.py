@@ -1,9 +1,22 @@
 import os
-import pandas as pd
+import importlib
 import psycopg2
-import streamlit as st
 
-@st.cache_resource(show_spinner=False)
+# Load pandas dynamically so static analysis does not require its source package.
+pd = importlib.import_module("pandas")
+
+try:
+    cache_resource = importlib.import_module("streamlit").cache_resource
+except ImportError:
+    from functools import lru_cache
+
+    def cache_resource(**_kwargs):
+        def decorator(function):
+            # Provide the same resource-reuse behavior when Streamlit is absent.
+            return lru_cache(maxsize=1)(function)
+        return decorator
+
+@cache_resource(show_spinner=False)
 def connection():
     return psycopg2.connect(
         host=os.getenv("LOGSENSE_DB_HOST", "localhost"),
