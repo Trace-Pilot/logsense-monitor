@@ -1,0 +1,20 @@
+2026-09-01 17:00:01|INFO|AuthService|User login successful
+2026-09-01 17:00:05|INFO|CustomerService|Customer Rajan registered successfully
+2026-09-01 17:00:10|INFO|CustomerService|Customer Aadhaar 123456789012 verified successfully
+2026-09-01 17:00:15|INFO|CustomerService|Customer PAN ABCDE1234F verified successfully
+2026-09-01 17:00:20|WARNING|CustomerService|Customer Aadhaar 987654321098 verification is pending
+2026-09-01 17:00:25|WARNING|PaymentService|Customer PAN XYZAB9876C payment verification delayed
+2026-09-01 17:00:30|ERROR|PaymentService|Payment failed for customer Aadhaar 456789123012
+2026-09-01 17:00:35|ERROR|PaymentService|Invalid PAN PQRST1234K provided by customer
+2026-09-01 17:00:40|CRITICAL|PaymentService|Payment service unavailable for customer PAN LMNOP5678Q
+2026-09-01 17:00:45|INFO|OrderService|Order ORD1001 created successfully
+2026-09-01 17:00:50|INFO|OrderService|Customer Aadhaar 321654987012 linked with order ORD1002
+2026-09-01 17:00:55|WARNING|AuthService|Multiple login attempts detected for PAN QRSTU2468M
+2026-09-01 17:01:00|ERROR|CustomerService|Customer Aadhaar 654321789012 could not be retrieved
+2026-09-01 17:01:05|CRITICAL|PaymentService|Transaction failed for PAN ZYXWV1357R and Aadhaar 741852963012
+2026-09-01 17:01:10|INFO|AuthService|User logout successful
+2026-09-01 17:01:15|INFO|OrderService|Order ORD1003 shipped successfully
+2026-09-01 17:01:20|WARNING|CustomerService|Aadhaar 111122223333 was entered incorrectly
+2026-09-01 17:01:25|ERROR|PaymentService|PAN ABCDE1234F was rejected by payment provider
+2026-09-01 17:01:30|INFO|CustomerService|Customer record updated without sensitive information
+2026-09-01 17:01:35|CRITICAL|AuthService|Security incident detected for Aadhaar 999988887777
