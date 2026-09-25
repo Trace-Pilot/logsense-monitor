@@ -1,8 +1,9 @@
+from email.mime import message
 import os
 import re
 import psycopg2
 from datetime import datetime
-
+from dotenv import load_dotenv
 # ============================================================
 # CONFIGURATION
 # ============================================================
@@ -11,6 +12,11 @@ LOG_DIRECTORY = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
     "Logs"
 )
+# Load environment variables from .env file into os.environ
+load_dotenv()
+
+MASK_SENSITIVE_DATA = os.getenv("MASK_SENSITIVE_DATA", "False")
+MASK_SENSITIVE_FIELD_LIST = os.getenv("MASK_SENSITIVE_FIELD_LIST", "")
 
 # DB_CONFIG = {
 #     "host": "localhost",
@@ -60,29 +66,30 @@ def mask_sensitive_information(message):
     # 1234-5678-9012
     # --------------------------------------------------------
 
-    def mask_aadhaar(match):
+    if "AADHAR" in MASK_SENSITIVE_FIELD_LIST:
+        def mask_aadhaar(match):
 
-        value = re.sub(
-            r"[\s-]",
-            "",
-            match.group(0)
+            value = re.sub(
+                r"[\s-]",
+                "",
+                match.group(0)
+            )
+
+            return (
+                value[:4]
+                + "XXXX"
+                + value[-4:]
+            )
+
+        aadhaar_pattern = (
+            r"\b\d{4}[\s-]?\d{4}[\s-]?\d{4}\b"
         )
 
-        return (
-            value[:4]
-            + "XXXX"
-            + value[-4:]
+        message = re.sub(
+            aadhaar_pattern,
+            mask_aadhaar,
+            message
         )
-
-    aadhaar_pattern = (
-        r"\b\d{4}[\s-]?\d{4}[\s-]?\d{4}\b"
-    )
-
-    message = re.sub(
-        aadhaar_pattern,
-        mask_aadhaar,
-        message
-    )
 
     # --------------------------------------------------------
     # PAN Number
@@ -93,6 +100,7 @@ def mask_sensitive_information(message):
     # Becomes:
     # AXXXE23XXF
     # --------------------------------------------------------
+
 
     def mask_pan(match):
 
@@ -111,15 +119,15 @@ def mask_sensitive_information(message):
         r"\b[A-Z]{5}[0-9]{4}[A-Z]\b"
     )
 
-    message = re.sub(
-        pan_pattern,
-        mask_pan,
-        message,
-        flags=re.IGNORECASE
-    )
-
+    if "PAN" in MASK_SENSITIVE_FIELD_LIST:
+        message = re.sub(
+            pan_pattern,
+            mask_pan,
+            message,
+            flags=re.IGNORECASE
+        )
+        
     return message
-
 
 # ============================================================
 # CREATE TABLE IF MISSING
@@ -259,9 +267,12 @@ def parse_log_line(log_line):
     # message is passed to the database.
     # --------------------------------------------------------
 
-    masked_message = mask_sensitive_information(
-        message
-    )
+    if MASK_SENSITIVE_DATA=="True":
+        masked_message = mask_sensitive_information(
+            message
+        )
+    else:
+        masked_message = message
 
     return {
         "timestamp": timestamp,
