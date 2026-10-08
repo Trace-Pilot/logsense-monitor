@@ -17,6 +17,7 @@ load_dotenv()
 
 MASK_SENSITIVE_DATA = os.getenv("MASK_SENSITIVE_DATA", "False")
 MASK_SENSITIVE_FIELD_LIST = os.getenv("MASK_SENSITIVE_FIELD_LIST", "")
+LOGFILE_FORMAT = os.getenv("LOGFILE_FORMAT", "csv")
 
 # DB_CONFIG = {
 #     "host": "localhost",
@@ -223,15 +224,20 @@ def parse_log_line(log_line):
     # Split log into four parts
     # --------------------------------------------------------
 
-    parts = log_line.split("|", 3)
+    if LOGFILE_FORMAT.lower() == "csv":
+        parts = log_line.split(",", 3)
+    elif LOGFILE_FORMAT.lower() == "pipe":
+        parts = log_line.split("|", 3)
+    elif LOGFILE_FORMAT.lower() == "tab":
+        parts = log_line.split("\t", 3)
 
-    if len(parts) != 4:
+    if len(parts) == 4:
+        timestamp_text = parts[0].strip()
+        severity = parts[1].strip().upper()
+        application = parts[2].strip()
+        message = parts[3].strip()
+    else:
         return None
-
-    timestamp_text = parts[0].strip()
-    severity = parts[1].strip().upper()
-    application = parts[2].strip()
-    message = parts[3].strip()
 
     # --------------------------------------------------------
     # Validate fields
