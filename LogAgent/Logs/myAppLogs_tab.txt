@@ -1,20 +1,21 @@
-2026-09-01 17:00:01	INFO	AuthService	User login successful
-2026-09-01 17:00:05	INFO	CustomerService	Customer Rajan registered successfully
-2026-09-01 17:00:10	INFO	CustomerService	Customer AADHAR 123456789012 verified successfully
-2026-09-01 17:00:15	INFO	CustomerService	Customer PAN ABCDE1234F verified successfully
-2026-09-01 17:00:20	WARNING	CustomerService	Customer AADHAR 987654321098 verification is pending
-2026-09-01 17:00:25	WARNING	PaymentService	Customer PAN XYZAB9876C payment verification delayed
-2026-09-01 17:00:30	ERROR	PaymentService	Payment failed for customer AADHAR 456789123012
-2026-09-01 17:00:35	ERROR	PaymentService	Invalid PAN PQRST1234K provided by customer
-2026-09-01 17:00:40	CRITICAL	PaymentService	Payment service unavailable for customer PAN LMNOP5678Q
-2026-09-01 17:00:45	INFO	OrderService	Order ORD1001 created successfully
-2026-09-01 17:00:50	INFO	OrderService	Customer AADHAR 321654987012 linked with order ORD1002
-2026-09-01 17:00:55	WARNING	AuthService	Multiple login attempts detected for PAN QRSTU2468M
-2026-09-01 17:01:00	ERROR	CustomerService	Customer AADHAR 654321789012 could not be retrieved
-2026-09-01 17:01:05	CRITICAL	PaymentService	Transaction failed for PAN ZYXWV1357R and AADHAR 741852963012
-2026-09-01 17:01:10	INFO	AuthService	User logout successful
-2026-09-01 17:01:15	INFO	OrderService	Order ORD1003 shipped successfully
-2026-09-01 17:01:20	WARNING	CustomerService	AADHAR 111122223333 was entered incorrectly
-2026-09-01 17:01:25	ERROR	PaymentService	PAN ABCDE1234F was rejected by payment provider
-2026-09-01 17:01:30	INFO	CustomerService	Customer record updated without sensitive information
-2026-09-01 17:01:35	CRITICAL	AuthService	Security incident detected for Aadaar 999988887777
+timestamp	severity	application	message	source_file	line_number
+2026-09-01 09:15:10	INFO	AuthService	User login successful	auth_handler.py	15
+2026-09-01 09:30:25	INFO	CustomerService	Customer Rajan registered successfully	customer_mgmt.py	28
+2026-09-01 10:05:40	INFO	CustomerService	Customer AADHAR [Aadhaar Redacted] verified successfully	kyc_validator.py	42
+2026-09-01 10:20:15	INFO	CustomerService	Customer PAN ABCDE1234F verified successfully	kyc_validator.py	48
+2026-09-01 11:00:50	WARNING	CustomerService	Customer AADHAR [Aadhaar Redacted] verification is pending	kyc_validator.py	64
+2026-09-01 11:45:12	WARNING	PaymentService	Customer PAN XYZAB9876C payment verification delayed	payment_gateway.py	89
+2026-09-01 12:30:18	ERROR	PaymentService	Payment failed for customer AADHAR [Aadhaar Redacted]	payment_gateway.py	112
+2026-09-01 13:10:45	ERROR	PaymentService	Invalid PAN PQRST1234K provided by customer	payment_gateway.py	118
+2026-09-01 14:02:11	CRITICAL	PaymentService	Payment service unavailable for customer PAN LMNOP5678Q	payment_gateway.py	145
+2026-09-01 14:15:30	INFO	OrderService	Order ORD1001 created successfully	order_controller.py	52
+2026-09-01 14:28:50	INFO	OrderService	Customer AADHAR [Aadhaar Redacted] linked with order ORD1002	order_controller.py	58
+2026-09-01 14:35:10	WARNING	AuthService	Multiple login attempts detected for PAN QRSTU2468M	auth_handler.py	36
+2026-09-01 14:40:15	ERROR	CustomerService	Customer AADHAR [Aadhaar Redacted] could not be retrieved	customer_mgmt.py	73
+2026-09-01 14:55:02	CRITICAL	PaymentService	Transaction failed for PAN ZYXWV1357R and AADHAR [Aadhaar Redacted]	payment_gateway.py	160
+2026-09-01 15:10:05	INFO	AuthService	User logout successful	auth_handler.py	22
+2026-09-01 15:30:20	INFO	OrderService	Order ORD1003 shipped successfully	order_controller.py	85
+2026-09-01 16:05:45	WARNING	CustomerService	AADHAR [Aadhaar Redacted] was entered incorrectly	kyc_validator.py	79
+2026-09-01 16:20:30	ERROR	PaymentService	PAN ABCDE1234F was rejected by payment provider	payment_gateway.py	175
+2026-09-01 16:45:20	INFO	CustomerService	Customer record updated without sensitive information	customer_mgmt.py	95
+2026-09-01 17:00:00	CRITICAL	AuthService	Security incident detected for Aadaar [Aadhaar Redacted]	auth_handler.py	110
